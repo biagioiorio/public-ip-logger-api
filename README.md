@@ -5,7 +5,6 @@ Semplice, privacy-friendly e pronta per essere integrata ovunque.
 
 ![Java](https://img.shields.io/badge/java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/SpringBoot-3.2-green)
-![License](https://img.shields.io/github/license/tuo-username/public-ip-logger-api)
 
 ## 🚀 Funzionalità
 
