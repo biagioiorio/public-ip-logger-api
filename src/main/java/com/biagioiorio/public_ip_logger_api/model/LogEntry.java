@@ -1,5 +1,6 @@
 package com.biagioiorio.public_ip_logger_api.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -13,10 +14,13 @@ public class LogEntry {
     private Long id;
 
     @Column(name = "hashed_ip")
+    @JsonProperty("hashed_ip")
     private String hashedIp;
+
     private LocalDateTime timestamp;
 
     @Column(name = "user_agent")
+    @JsonProperty("user_agent")
     private String userAgent;
     private String referer;
 
