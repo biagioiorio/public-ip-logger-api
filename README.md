@@ -1,22 +1,85 @@
-# 🌍 Public IP Logger API
+# Public IP Logger API
 
-Un'alternativa etica e open-source per tracciare click sui link.  
-Semplice, privacy-friendly e pronta per essere integrata ovunque.
+🌐 A lightweight, privacy-conscious API for logging click events and redirecting users while **avoiding permanent IP storage**.
 
-![Java](https://img.shields.io/badge/java-21-blue)
-![Spring Boot](https://img.shields.io/badge/SpringBoot-3.2-green)
+## 🚀 Features
 
-## 🚀 Funzionalità
+- Log incoming user clicks via a simple API
+- Capture and log user agent and IP (configurable to hash/store it)
+- Timestamped records in a MySQL database
+- Lightweight redirect handler with tracking
+- Built with Spring Boot
 
-- 🎯 Genera link tracciabili e anonimizzati
-- 📊 Ricevi statistiche: paese, browser, OS, device
-- 🔐 Niente IP salvati, zero cookie, GDPR-friendly
-- 🔁 Redirect immediato alla destinazione originale
-- 🧰 API REST pronte all'uso
+## 📦 Endpoints
 
-## 📦 API Principali
+### `POST /api/logs`
+Logs a click or visit event.
 
-```http
-POST   /trackers           # Crea un nuovo link di tracking
-GET    /track/{id}         # Registra un click e reindirizza
-GET    /trackers/{id}/stats # Statistiche click (JSON)
+**Request Body:**
+```json
+{
+  "hashedIp": "hashed_ip_1",
+  "userAgent": "user_agent_1"
+}
+```
+
+---
+
+### `GET /api/logs`
+Returns all logged entries.
+
+---
+
+### `GET /r?to=URL`
+Logs the visit and redirects to the given URL.
+
+**Example:**
+```
+/r?to=https://google.com
+```
+
+---
+
+## ⚙️ Technologies
+
+- Java 21
+- Spring Boot 3
+- MySQL (configurable)
+- Maven
+
+## 🛠️ Setup
+
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/biagioiorio/public-ip-logger-api.git
+   ```
+
+2. Configure your `application.properties` with your DB credentials:
+
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/public_ip_logger
+   spring.datasource.username=root
+   spring.datasource.password=yourpassword
+   spring.jpa.hibernate.ddl-auto=update
+   ```
+
+3. Run the application:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+---
+
+## 📌 Roadmap
+
+- [x] Redirect with logging
+- [x] IP + User-Agent logging
+- [ ] Optional IP hashing
+- [ ] `.env` support for credentials
+- [ ] Access stats endpoint
+
+---
+
+## 📄 License
+
+This project is licensed under the **GNU General Public License v3.0** – see the [LICENSE](LICENSE) file for details.
